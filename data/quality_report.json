@@ -1,0 +1,157 @@
+{
+  "statistical_fidelity": {
+    "numeric_metrics": {
+      "amount": {
+        "wasserstein_distance": 0.0236,
+        "ks_statistic": 0.0164,
+        "ks_pvalue": 0.8319,
+        "real_mean": 229.1782,
+        "synth_mean": 224.9169,
+        "real_std": 432.2923,
+        "synth_std": 434.6326
+      },
+      "customer_age": {
+        "wasserstein_distance": 0.0246,
+        "ks_statistic": 0.0164,
+        "ks_pvalue": 0.8319,
+        "real_mean": 44.994,
+        "synth_mean": 44.6812,
+        "real_std": 14.4672,
+        "synth_std": 14.4688
+      },
+      "account_tenure_years": {
+        "wasserstein_distance": 0.0459,
+        "ks_statistic": 0.023,
+        "ks_pvalue": 0.4313,
+        "real_mean": 4.419,
+        "synth_mean": 4.2854,
+        "real_std": 2.9173,
+        "synth_std": 2.8763
+      },
+      "geographic_distance": {
+        "wasserstein_distance": 0.0524,
+        "ks_statistic": 0.0245,
+        "ks_pvalue": 0.3532,
+        "real_mean": 22.3851,
+        "synth_mean": 26.303,
+        "real_std": 77.9784,
+        "synth_std": 120.2742
+      }
+    },
+    "categorical_metrics": {
+      "merchant_category": {
+        "total_variation_distance": 0.0237,
+        "real_distribution": {
+          "5411": 0.3015,
+          "5812": 0.258,
+          "5311": 0.157,
+          "5999": 0.135,
+          "5942": 0.098,
+          "5944": 0.0505
+        },
+        "synth_distribution": {
+          "5411": 0.3044,
+          "5812": 0.2442,
+          "5999": 0.1506,
+          "5311": 0.1494,
+          "5942": 0.1032,
+          "5944": 0.0482
+        }
+      },
+      "is_fraud": {
+        "total_variation_distance": 0.0,
+        "real_distribution": {
+          "false": 0.98,
+          "true": 0.02
+        },
+        "synth_distribution": {
+          "false": 0.98,
+          "true": 0.02
+        }
+      }
+    },
+    "overall_score": 0.9716
+  },
+  "diversity": {
+    "range_coverage": {
+      "amount": 1.0,
+      "customer_age": 1.0,
+      "account_tenure_years": 1.0,
+      "geographic_distance": 1.0
+    },
+    "unique_counts": {
+      "merchant_category": {
+        "real": 6,
+        "synthetic": 6
+      },
+      "is_fraud": {
+        "real": 2,
+        "synthetic": 2
+      },
+      "fraud_reason": {
+        "real": 4,
+        "synthetic": 4
+      }
+    },
+    "edge_case_coverage": {
+      "amount": {
+        "low_tail": 0.948,
+        "high_tail": 0.988
+      },
+      "customer_age": {
+        "low_tail": 1.176,
+        "high_tail": 1.044
+      },
+      "account_tenure_years": {
+        "low_tail": 2.556,
+        "high_tail": 1.54
+      },
+      "geographic_distance": {
+        "low_tail": 0.84,
+        "high_tail": 0.96
+      }
+    }
+  },
+  "utility": {
+    "real_only": {
+      "accuracy": 0.9967,
+      "precision": 0.9167,
+      "recall": 0.9167,
+      "f1": 0.9167,
+      "auc_roc": 0.9961
+    },
+    "synthetic_only": {
+      "accuracy": 0.9983,
+      "precision": 1.0,
+      "recall": 0.9167,
+      "f1": 0.9565,
+      "auc_roc": 0.9987
+    },
+    "combined": {
+      "accuracy": 0.9983,
+      "precision": 1.0,
+      "recall": 0.9167,
+      "f1": 0.9565,
+      "auc_roc": 0.9975
+    },
+    "utility_score": 1.0026
+  },
+  "privacy": {
+    "membership_inference": {
+      "avg_min_distance": 0.3123,
+      "min_distance": 0.0106,
+      "max_distance": 9.6369,
+      "std_distance": 1.0061
+    },
+    "privacy_score": 0.0625
+  },
+  "timestamp": "2026-01-31T15:02:00.403400",
+  "real_data_shape": [
+    2000,
+    10
+  ],
+  "synthetic_data_shape": [
+    5000,
+    10
+  ]
+}
