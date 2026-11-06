@@ -1,0 +1,14 @@
+{
+ "categorical": [
+  "workclass",
+  "education",
+  "marital-status",
+  "occupation",
+  "relationship",
+  "race",
+  "sex",
+  "native-country"
+ ],
+ "target": "class",
+ "retrieved_utc": "2026-11-05T03:50:26+00:00"
+}

@@ -1,0 +1,9 @@
+policy,p_fail,attempts,n_accepted,n_rejected_fidelity,n_rejected_privacy,n_error,n_timeout,n_invalid,n_unknown,abstained,delivered,requested
+retry_fallback,0.0,226,200,0,26,0,0,0,0,0,53920,53920
+retry_fallback,0.1,264,200,0,24,4,16,20,0,0,53920,53920
+retry_fallback,0.3,360,199,3,40,49,33,36,0,0,53420,53920
+retry_fallback,0.5,494,193,2,40,84,75,100,0,0,51791,53920
+single_attempt,0.0,200,176,0,24,0,0,0,0,0,53137,53920
+single_attempt,0.1,200,164,0,21,5,4,6,0,1,49879,53920
+single_attempt,0.3,200,123,0,10,29,14,24,0,4,35757,53920
+single_attempt,0.5,200,101,0,6,39,25,29,0,10,30724,53920

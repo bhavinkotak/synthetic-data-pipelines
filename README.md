@@ -1,5 +1,20 @@
 # Synthetic Data Pipelines - Code Project
 
+<!-- v2-release -->
+## Version 2.0 (November 2026)
+
+The v2 release is a preregistered, reproducible rewrite of the paper:
+**From Data Scarcity to Abundance? A Reproducible Benchmark of Quality-Gated Synthetic Data Pipelines for Tabular Model Training**
+
+- Paper, code, data sources, results and tests: [`v2/`](v2/)
+- Archived on Zenodo: [10.5281/zenodo.20619633](https://doi.org/10.5281/zenodo.20619633) (v1: [10.5281/zenodo.18445584](https://doi.org/10.5281/zenodo.18445584))
+- Preregistered verdict: SUPPORTED
+- Reproduce: `python v2/code/run_all.py`
+
+Every number in the v2 paper is produced by this code from logged results. Claims from v1 that had no
+supporting data were removed; `v2/REVIEW.md` lists them.
+<!-- v2-release -->
+
 ## Author
 **Bhavin Kotak**
 - Work Email: bhavin.kotak@ibm.com

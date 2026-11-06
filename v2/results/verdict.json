@@ -1,0 +1,167 @@
+{
+ "verdict": "SUPPORTED",
+ "primary_endpoint": "utility_ratio_hgb (orchestrated_gated)",
+ "target": 0.9,
+ "tau_privacy": 0.6,
+ "per_dataset": {
+  "breast_cancer": {
+   "utility_ratio_hgb": {
+    "n": 5,
+    "mean": 0.9956926242112267,
+    "std": 0.01081735257924243,
+    "ci_lo": 0.9822611069577047,
+    "ci_hi": 1.0091241414647487
+   },
+   "dcr_share": {
+    "n": 5,
+    "mean": 0.5267605633802817,
+    "std": 0.033274182126556216,
+    "ci_lo": 0.48544520936406166,
+    "ci_hi": 0.5680759173965017
+   },
+   "abstained_seeds": 0,
+   "seeds": 5,
+   "meets_support": true,
+   "meets_refute": false
+  },
+  "credit_g": {
+   "utility_ratio_hgb": {
+    "n": 5,
+    "mean": 0.9614459921621948,
+    "std": 0.049397973258203554,
+    "ci_lo": 0.9001103071832512,
+    "ci_hi": 1.0227816771411384
+   },
+   "dcr_share": {
+    "n": 5,
+    "mean": 0.5024,
+    "std": 0.020851858430365404,
+    "ci_lo": 0.4765089980913736,
+    "ci_hi": 0.5282910019086263
+   },
+   "abstained_seeds": 0,
+   "seeds": 5,
+   "meets_support": true,
+   "meets_refute": false
+  },
+  "adult": {
+   "utility_ratio_hgb": {
+    "n": 5,
+    "mean": 0.9903486819633883,
+    "std": 0.00362692393165525,
+    "ci_lo": 0.9858452610932283,
+    "ci_hi": 0.9948521028335483
+   },
+   "dcr_share": {
+    "n": 5,
+    "mean": 0.49689999999999995,
+    "std": 0.0183376320717807,
+    "ci_lo": 0.47413082244416316,
+    "ci_hi": 0.5196691775558367
+   },
+   "abstained_seeds": 0,
+   "seeds": 5,
+   "meets_support": true,
+   "meets_refute": false
+  },
+  "bank_marketing": {
+   "utility_ratio_hgb": {
+    "n": 5,
+    "mean": 0.9622055708046895,
+    "std": 0.025352328887995344,
+    "ci_lo": 0.9307264967538444,
+    "ci_hi": 0.9936846448555345
+   },
+   "dcr_share": {
+    "n": 5,
+    "mean": 0.5077,
+    "std": 0.013146292252951008,
+    "ci_lo": 0.49137672219964573,
+    "ci_hi": 0.5240232778003544
+   },
+   "abstained_seeds": 0,
+   "seeds": 5,
+   "meets_support": true,
+   "meets_refute": false
+  }
+ },
+ "secondary_S1_gate_attribution": {
+  "per_dataset": {
+   "breast_cancer": {
+    "adversarial_gated_mia": {
+     "n": 5,
+     "mean": 0.5495437413211663,
+     "std": 0.07367606059738166,
+     "ci_lo": 0.45806282934791864,
+     "ci_hi": 0.641024653294414
+    },
+    "copy_ungated_mia": {
+     "n": 5,
+     "mean": 0.7985717119619123,
+     "std": 0.005922366173249445,
+     "ci_lo": 0.7912181231004087,
+     "ci_hi": 0.805925300823416
+    },
+    "met": true
+   },
+   "credit_g": {
+    "adversarial_gated_mia": {
+     "n": 5,
+     "mean": 0.5206528,
+     "std": 0.02460797503249711,
+     "ci_lo": 0.4900979633334513,
+     "ci_hi": 0.5512076366665488
+    },
+    "copy_ungated_mia": {
+     "n": 5,
+     "mean": 0.8202016000000001,
+     "std": 0.00854216909221545,
+     "ci_lo": 0.8095950961716273,
+     "ci_hi": 0.8308081038283729
+    },
+    "met": true
+   },
+   "adult": {
+    "adversarial_gated_mia": {
+     "n": 5,
+     "mean": 0.5021706079999999,
+     "std": 0.0031818986863067053,
+     "ci_lo": 0.49821975895528103,
+     "ci_hi": 0.5061214570447188
+    },
+    "copy_ungated_mia": {
+     "n": 5,
+     "mean": 0.671650096,
+     "std": 0.006734499261896172,
+     "ci_lo": 0.6632881107205737,
+     "ci_hi": 0.6800120812794264
+    },
+    "met": true
+   },
+   "bank_marketing": {
+    "adversarial_gated_mia": {
+     "n": 5,
+     "mean": 0.500708288,
+     "std": 0.0110330148768285,
+     "ci_lo": 0.4870089906357955,
+     "ci_hi": 0.5144075853642045
+    },
+    "copy_ungated_mia": {
+     "n": 5,
+     "mean": 0.6644277439999999,
+     "std": 0.006867694477863732,
+     "ci_lo": 0.6559003750161737,
+     "ci_hi": 0.6729551129838262
+    },
+    "met": true
+   }
+  },
+  "met_all": true
+ },
+ "secondary_S3_fault_tolerance": {
+  "p_fail": 0.3,
+  "target_delivered": 0.95,
+  "retry_fallback_min_dataset_mean": 0.9800000000000001,
+  "met": true
+ }
+}

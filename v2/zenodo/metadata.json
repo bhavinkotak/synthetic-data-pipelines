@@ -1,0 +1,69 @@
+{
+  "title": "From Data Scarcity to Abundance? A Reproducible Benchmark of Quality-Gated Synthetic Data Pipelines for Tabular Model Training",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "<p>Synthetic data is often proposed for training models when real records are scarce or sensitive. Version 1 of this paper made quantitative claims about such pipelines with no experiment behind them, and this revision replaces those claims with a preregistered, reproducible benchmark. We describe a pipeline in which a planner chooses among candidate generators and a quality gate accepts a synthetic batch only if it stays close to a real holdout and is not closer to training records than fresh real records are. No language-model API was available. The planner is therefore a deterministic rule-based stand-in, and the language-model layer is still an untested design. We evaluate four local generators (Gaussian copula, class-conditional Gaussian mixture, SMOTE-style interpolation, independent marginals) and a memorising control on four public tabular datasets with five seeds. The gated pipeline retained between 96.1% and 99.6% of real-data test AUC. That supports the preregistered hypothesis of at least 90% retention, with no margin on credit-g, where the interval reached the threshold. Utility alone did not reveal leakage. Interpolation and copying kept near-real utility while membership-inference AUC rose as high as 0.82. The gate withheld every interpolation and copy release, and when the copier was tried first it lowered attack AUC to between 0.50 and 0.55. Under a simulated 30% fault rate, retry with fallback delivered 99.5% of requested rows (53420 of 53920). Adding synthetic rows to small real training sets gave no consistent gain.</p><p><strong>Changes in version 2.0</strong></p><ul><li>New title, chosen to match the evidence. The LLM orchestration layer is now presented as an untested architecture, and a rule-based planner is measured in its place.</li><li>Removed every unmeasured claim of version 1: the 90-95% performance figure, the 60-80% cost reduction, the 6-18 month to 4-8 week timeline, the 40-60% LLM quality improvement, the three named case studies, and the claim that synthetic data eliminates privacy risk.</li><li>Added a preregistered benchmark on four public datasets with five generators and five seeds. Utility, fidelity, and privacy are measured on disjoint splits and reported with 95% intervals and a verdict file.</li><li>Added a fail-closed quality gate, calibrated on real data, that can abstain. Ablations switch the gate on and off and test an adversarial memorising generator, simulated generator faults, data scarcity, and missing data.</li><li>New Threats to Validity section. The regulatory-compliance mappings are gone, and every reference was corrected and checked against its DOI or arXiv record.</li><li>The code, cached data with checksums, results, tests, and the preregistration now ship together as a reproducible package.</li></ul>",
+  "creators": [
+    {
+      "name": "Kotak, Bhavin",
+      "affiliation": "IBM, Armonk, NY",
+      "orcid": "0009-0006-4793-7046"
+    }
+  ],
+  "keywords": [
+    "Synthetic data",
+    "Tabular data",
+    "Data quality gate",
+    "Membership inference",
+    "Privacy evaluation",
+    "Machine learning pipelines",
+    "Preregistration",
+    "Reproducibility"
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "version": "2.0",
+  "language": "eng",
+  "notes": "Reproduction: unzip synthetic-data-pipelines-v2-code-data.zip, create a Python 3.12 environment with numpy, scipy, pandas, scikit-learn, matplotlib, and pytest, then run `python code/run_all.py` from the package root (about 8 minutes on an 8-core laptop CPU; cached data are included). `python code/run_all.py --analyze` rebuilds summaries, figures, and tables from results/. Tests: `python -m pytest tests`. Build the paper in paper/ with pdflatex and bibtex. The linked GitHub repository holds the version 1 code; the version 2.0 code, data, and results are in this Zenodo package.",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/bhavinkotak/synthetic-data-pipelines",
+      "relation": "isSupplementedBy",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "references": [
+    "Alaa, A.M., van Breugel, B., Saveliev, E., van der Schaar, M. (2022). How Faithful is your Synthetic Data? Sample-level Metrics for Evaluating and Auditing Generative Models. Proc. International Conference on Machine Learning. arXiv:2102.08921. https://arxiv.org/abs/2102.08921",
+    "Becker, B., Kohavi, R. (1996). Adult. UCI Machine Learning Repository. https://doi.org/10.24432/C5XW20",
+    "Borisov, V., Seßler, K., Leemann, T., Pawelczyk, M., Kasneci, G. (2023). Language Models are Realistic Tabular Data Generators. Proc. International Conference on Learning Representations. arXiv:2210.06280. https://arxiv.org/abs/2210.06280",
+    "Chawla, N.V., Bowyer, K.W., Hall, L.O., Kegelmeyer, W.P. (2002). SMOTE: Synthetic Minority Over-sampling Technique. Journal of Artificial Intelligence Research. https://doi.org/10.1613/jair.953",
+    "Chen, R.J., Lu, M.Y., Chen, T.Y., Williamson, D.F.K., Mahmood, F. (2021). Synthetic data in machine learning for medicine and healthcare. Nature Biomedical Engineering. https://doi.org/10.1038/s41551-021-00751-8",
+    "Dwork, C., McSherry, F., Nissim, K., Smith, A. (2006). Calibrating Noise to Sensitivity in Private Data Analysis. Theory of Cryptography (TCC), Lecture Notes in Computer Science. https://doi.org/10.1007/11681878_14",
+    "Esteban, C., Hyland, S.L., Rätsch, G. (2017). Real-valued (Medical) Time Series Generation with Recurrent Conditional GANs. arXiv:1706.02633. https://arxiv.org/abs/1706.02633",
+    "Goodfellow, I.J., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair, S., et al. (2014). Generative Adversarial Networks. arXiv:1406.2661. https://arxiv.org/abs/1406.2661",
+    "Grinsztajn, L., Oyallon, E., Varoquaux, G. (2022). Why do tree-based models still outperform deep learning on tabular data?. Advances in Neural Information Processing Systems, Datasets and Benchmarks Track. arXiv:2207.08815. https://arxiv.org/abs/2207.08815",
+    "Hayes, J., Melis, L., Danezis, G., De Cristofaro, E. (2017). LOGAN: Membership Inference Attacks Against Generative Models. arXiv:1705.07663. https://arxiv.org/abs/1705.07663",
+    "Hernandez, M., Epelde, G., Alberdi, A., Cilla, R., Rankin, D. (2022). Synthetic data generation for tabular health records: A systematic review. Neurocomputing. https://doi.org/10.1016/j.neucom.2022.04.053",
+    "Hilprecht, B., Härterich, M., Bernau, D. (2019). Monte Carlo and Reconstruction Membership Inference Attacks against Generative Models. Proceedings on Privacy Enhancing Technologies. https://doi.org/10.2478/popets-2019-0067",
+    "Hofmann, H. (1994). Statlog (German Credit Data). UCI Machine Learning Repository. https://doi.org/10.24432/C5NC77",
+    "Houssiau, F., Jordon, J., Cohen, S.N., Daniel, O., Elliott, A., Geddes, J., et al. (2022). TAPAS: a Toolbox for Adversarial Privacy Auditing of Synthetic Data. arXiv:2211.06550. https://arxiv.org/abs/2211.06550",
+    "Jordon, J., Szpruch, L., Houssiau, F., Bottarelli, M., Cherubin, G., Maple, C., et al. (2022). Synthetic Data - what, why and how?. arXiv:2205.03257. https://arxiv.org/abs/2205.03257",
+    "Kotelnikov, A., Baranchuk, D., Rubachev, I., Babenko, A. (2023). TabDDPM: Modelling Tabular Data with Diffusion Models. Proc. International Conference on Machine Learning. arXiv:2209.15421. https://arxiv.org/abs/2209.15421",
+    "Long, L., Wang, R., Xiao, R., Zhao, J., Ding, X., Chen, G., et al. (2024). On LLMs-Driven Synthetic Data Generation, Curation, and Evaluation: A Survey. arXiv:2406.15126. https://arxiv.org/abs/2406.15126",
+    "Moro, S., Cortez, P., Rita, P. (2014). A data-driven approach to predict the success of bank telemarketing. Decision Support Systems. https://doi.org/10.1016/j.dss.2014.03.001",
+    "Patki, N., Wedge, R., Veeramachaneni, K. (2016). The Synthetic Data Vault. Proc. IEEE International Conference on Data Science and Advanced Analytics (DSAA). https://doi.org/10.1109/DSAA.2016.49",
+    "Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). Scikit-learn: Machine Learning in Python. Journal of Machine Learning Research. arXiv:1201.0490. https://arxiv.org/abs/1201.0490",
+    "Platzer, M., Reutterer, T. (2021). Holdout-Based Empirical Assessment of Mixed-Type Synthetic Data. Frontiers in Big Data. https://doi.org/10.3389/fdata.2021.679939",
+    "Qian, Z., Cebere, B., van der Schaar, M. (2023). Synthcity: facilitating innovative use cases of synthetic data in different data modalities. arXiv:2301.07573. https://arxiv.org/abs/2301.07573",
+    "Schelter, S., Lange, D., Schmidt, P., Celikel, M., Biessmann, F., Grafberger, A. (2018). Automating large-scale data quality verification. Proceedings of the VLDB Endowment. https://doi.org/10.14778/3229863.3229867",
+    "Shokri, R., Stronati, M., Song, C., Shmatikov, V. (2017). Membership Inference Attacks Against Machine Learning Models. Proc. IEEE Symposium on Security and Privacy (SP). https://doi.org/10.1109/SP.2017.41",
+    "Street, W.N., Wolberg, W.H., Mangasarian, O.L. (1993). Nuclear feature extraction for breast tumor diagnosis. Proc. SPIE Biomedical Image Processing and Biomedical Visualization. https://doi.org/10.1117/12.148698",
+    "Vanschoren, J., van Rijn, J.N., Bischl, B., Torgo, L. (2014). OpenML: networked science in machine learning. ACM SIGKDD Explorations Newsletter. https://doi.org/10.1145/2641190.2641198",
+    "Wang, Y., Kordi, Y., Mishra, S., Liu, A., Smith, N.A., Khashabi, D., et al. (2023). Self-Instruct: Aligning Language Models with Self-Generated Instructions. Proc. Annual Meeting of the Association for Computational Linguistics. arXiv:2212.10560. https://arxiv.org/abs/2212.10560",
+    "Xu, L., Skoularidou, M., Cuesta-Infante, A., Veeramachaneni, K. (2019). Modeling Tabular data using Conditional GAN. Advances in Neural Information Processing Systems. arXiv:1907.00503. https://arxiv.org/abs/1907.00503",
+    "Zhang, J., Cormode, G., Procopiuc, C.M., Srivastava, D., Xiao, X. (2017). PrivBayes: Private Data Release via Bayesian Networks. ACM Transactions on Database Systems. https://doi.org/10.1145/3134428",
+    "Zhao, Z., Kunar, A., Van der Scheer, H., Birke, R., Chen, L.Y. (2021). CTAB-GAN: Effective Table Data Synthesizing. Proc. Asian Conference on Machine Learning. arXiv:2102.08369. https://arxiv.org/abs/2102.08369",
+    "van Breugel, B., Qian, Z., van der Schaar, M. (2023). Synthetic data, real errors: how (not) to publish and use synthetic data. Proc. International Conference on Machine Learning. arXiv:2305.09235. https://arxiv.org/abs/2305.09235"
+  ]
+}

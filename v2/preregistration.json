@@ -1,0 +1,41 @@
+{
+  "title": "Quality-gated synthetic tabular data pipelines: utility, fidelity, and privacy on public benchmarks",
+  "registered_utc": "2026-11-04T22:00:00Z",
+  "registered_before_running": true,
+  "hypothesis": "Under a fidelity-and-privacy quality gate, a rule-orchestrated pipeline of locally fitted statistical generators (candidate order: Gaussian copula, class-conditional GMM, SMOTE-style interpolation, independent marginals) produces synthetic training data whose downstream utility is at least 90% of real-data utility on each of four public tabular classification benchmarks, without placing synthetic records closer to training records than fresh real records are.",
+  "datasets": ["breast_cancer (sklearn)", "credit_g (OpenML 31)", "adult (OpenML 1590)", "bank_marketing (OpenML 1461)"],
+  "seeds": [0, 1, 2, 3, 4],
+  "splits": "per seed, stratified: 50% train (generator fitting), 25% holdout (privacy reference and gate calibration), 25% test (utility evaluation only); datasets larger than 10000 rows are stratified-subsampled to 10000 rows per seed",
+  "primary_endpoint": {
+    "name": "utility_ratio_hgb",
+    "definition": "ROC-AUC on the real test split of a HistGradientBoosting classifier trained on the released synthetic data (TSTR), divided by the ROC-AUC of the same classifier trained on the real train split (TRTR); per dataset, mean over 5 seeds with a two-sided 95% Student-t interval",
+    "condition": "orchestrated_gated"
+  },
+  "co_primary_privacy_endpoint": {
+    "name": "dcr_share",
+    "definition": "fraction of released synthetic records whose nearest real record (Gower L1 distance) lies in a train subsample of holdout size rather than in the holdout; ties count one half; 0.5 is the fresh-real-data reference"
+  },
+  "baseline": "TRTR with the same classifier (ratio denominator); secondary baselines: each generator without the gate, the independent-marginals generator, and a leaky copy generator (negative control)",
+  "gate": {
+    "kappa": 2.0,
+    "reference_quantile": 0.95,
+    "reference_draws": 20,
+    "tau_privacy_dcr_share": 0.6,
+    "batches_per_request": 10,
+    "max_attempts_per_candidate": 2,
+    "min_release_fraction": 0.5,
+    "fail_closed": "errors, timeouts, schema violations, and undefined metrics count as rejections"
+  },
+  "decision_rule": {
+    "SUPPORTED": "on every dataset: lower 95% CI bound of mean utility_ratio_hgb >= 0.90, mean dcr_share <= 0.60, and no abstention in any seed",
+    "REFUTED": "on any dataset: upper 95% CI bound of mean utility_ratio_hgb < 0.90, or lower 95% CI bound of mean dcr_share > 0.60, or abstention in at least 3 of 5 seeds",
+    "INCONCLUSIVE": "otherwise"
+  },
+  "falsification_rule": "The hypothesis is falsified if the 95% interval for the mean utility ratio lies entirely below 0.90 on at least one dataset, or if the pipeline cannot release data (abstains) in a majority of seeds on a dataset.",
+  "secondary_endpoints": {
+    "S1_gate_attribution": "With the leaky copy generator placed first in the candidate list, the gated pipeline has mean membership-inference AUC <= 0.55 on every dataset, while the ungated copy generator has mean MIA AUC > 0.60.",
+    "S2_scarcity": "Exploratory, no direction claimed: paired difference in logistic-regression AUC between real+gated-synthetic training and real-only training at n_real in {50, 100, 200, 400}.",
+    "S3_fault_tolerance": "With simulated generator fault probability 0.3, the retry-and-fallback orchestrator delivers >= 95% of requested rows on every dataset; a single-attempt single-candidate policy is reported as the ablation."
+  },
+  "analysis_not_registered": "Missing-data injection (MCAR rates 0.1 and 0.3 on numeric cells) and runtime scaling are exploratory breakpoint scenarios."
+}

@@ -1,0 +1,8 @@
+condition,seeds,attempts,abstained_seeds,n_accepted,n_rejected_fidelity,n_rejected_privacy,n_error,n_timeout,n_invalid,n_unknown,batches_copula,batches_gmm,batches_smote,batches_independent,batches_copy,acceptance_rate
+copula_gated,20,215,0,197,0,18,0,0,0,0,197,0,0,0,0,0.9162790697674419
+gmm_gated,20,215,0,197,0,18,0,0,0,0,0,197,0,0,0,0.9162790697674419
+smote_gated,20,400,20,2,0,398,0,0,0,0,0,0,2,0,0,0.005
+independent_gated,20,265,5,148,102,15,0,0,0,0,0,0,0,148,0,0.5584905660377358
+copy_gated,20,397,20,7,0,390,0,0,0,0,0,0,0,0,7,0.017632241813602016
+orchestrated_gated,20,226,0,200,0,26,0,0,0,0,197,3,0,0,0,0.8849557522123894
+adversarial_gated,20,627,0,200,0,427,0,0,0,0,183,7,0,1,9,0.3189792663476874

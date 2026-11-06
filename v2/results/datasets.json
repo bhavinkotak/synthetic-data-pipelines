@@ -1,0 +1,74 @@
+{
+ "datasets": [
+  {
+   "dataset": "breast_cancer",
+   "rows": 569,
+   "features": 30,
+   "categorical": 0,
+   "numeric": 30,
+   "positive_rate": 0.37258347978910367,
+   "rows_used": 569
+  },
+  {
+   "dataset": "credit_g",
+   "rows": 1000,
+   "features": 20,
+   "categorical": 13,
+   "numeric": 7,
+   "positive_rate": 0.3,
+   "rows_used": 1000
+  },
+  {
+   "dataset": "adult",
+   "rows": 48842,
+   "features": 14,
+   "categorical": 8,
+   "numeric": 6,
+   "positive_rate": 0.23928176569346055,
+   "rows_used": 10000
+  },
+  {
+   "dataset": "bank_marketing",
+   "rows": 45211,
+   "features": 16,
+   "categorical": 9,
+   "numeric": 7,
+   "positive_rate": 0.11698480458295547,
+   "rows_used": 10000
+  }
+ ],
+ "provenance": [
+  {
+   "name": "breast_cancer",
+   "file": "breast_cancer.csv",
+   "sha256": "75a1d74a59df9cb0a78ecc0a36085bf8a85239557f178d3b8d758e88b26416e1",
+   "url": "https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic",
+   "license": "CC BY 4.0 (UCI); bundled with scikit-learn (BSD-3-Clause)",
+   "retrieved_utc": "2026-11-05T03:49:58+00:00"
+  },
+  {
+   "name": "credit_g",
+   "file": "credit_g.csv",
+   "sha256": "38b6dbf6fb4b0311a3ffc005730f42623128591fb36473ab3c22d270c0467632",
+   "url": "https://www.openml.org/d/31",
+   "license": "CC BY 4.0 (UCI Statlog German Credit)",
+   "retrieved_utc": "2026-11-05T03:50:19+00:00"
+  },
+  {
+   "name": "adult",
+   "file": "adult.csv",
+   "sha256": "8f970e20c9991979ec0a9ccb65ce97543d678709a2c6f8ef23f7fb32f40adddc",
+   "url": "https://www.openml.org/d/1590",
+   "license": "CC BY 4.0 (UCI Adult)",
+   "retrieved_utc": "2026-11-05T03:50:26+00:00"
+  },
+  {
+   "name": "bank_marketing",
+   "file": "bank_marketing.csv",
+   "sha256": "17d229e152b7789eb835fd785a9f3d14ba7d9c90bf2a4bb83630ef6c7fcad969",
+   "url": "https://www.openml.org/d/1461",
+   "license": "CC BY 4.0 (UCI Bank Marketing)",
+   "retrieved_utc": "2026-11-05T03:51:41+00:00"
+  }
+ ]
+}

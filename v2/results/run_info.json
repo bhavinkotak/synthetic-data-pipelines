@@ -1,0 +1,9 @@
+{
+ "wall_clock_seconds": 469.8753299713135,
+ "python": "3.12.12",
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "machine": "arm64",
+ "cpu_count": 8,
+ "sklearn": "1.9.1",
+ "pandas": "3.1.1"
+}
