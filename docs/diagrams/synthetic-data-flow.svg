@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="synthetic-data-flow-title synthetic-data-flow-desc" id="synthetic-data-flow-root">
+        <title id="synthetic-data-flow-title">Quality-gated synthetic data pipeline</title>
+        <desc id="synthetic-data-flow-desc">Decision flow from real train and holdout splits through orchestrated candidate generators, schema validation, fidelity and DCR privacy gates, retry fallback, and TSTR dataset export.</desc>
+        <defs>
+      <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Serif:ital@0;1&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');
+      #synthetic-data-flow-root { --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-soft:    #5a6580;
+      --color-accent:  #bf4520;
+      --color-link:    #2e5aa8;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace; }
+      #synthetic-data-flow-root { font-family: var(--font-sans); color: var(--color-ink); }
+      #synthetic-data-flow-root .diagram-container { width: 100%; overflow-x: auto; }
+      @media print {
+#synthetic-data-flow-root .diagram-container { overflow-x: visible; }
+}</style>
+          <pattern id="synthetic-data-flow-dots" width="22" height="22" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r="0.9" fill="#2d3142" fill-opacity="0.10"/>
+          </pattern>
+          <marker id="synthetic-data-flow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+          <marker id="synthetic-data-flow-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bf4520"/></marker>
+          <marker id="synthetic-data-flow-arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f5f5f5"/>
+        <rect width="100%" height="100%" fill="url(#synthetic-data-flow-dots)" opacity="0.55"/>
+
+        <!-- Orthogonal connectors (drawn before labels and nodes) -->
+        <!-- 1. Real Train & Holdout -> Candidate Orchestrator -->
+        <line x1="360" y1="92" x2="360" y2="128" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 2. Candidate Orchestrator -> Schema & NaN valid? -->
+        <line x1="360" y1="184" x2="360" y2="220" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 3. Schema & NaN valid? (NO) -> Retry / Next Model -->
+        <line x1="472" y1="264" x2="608" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 4. Schema & NaN valid? (YES) -> Fidelity & DCR gate? -->
+        <line x1="360" y1="308" x2="360" y2="344" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 5. Fidelity & DCR gate? (NO) -> Retry / Next Model -->
+        <path d="M 480,392 H 696 Q 704,392 704,384 V 292"
+              fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 6. Retry / Next Model -> Candidate Orchestrator (fallback loop) -->
+        <path d="M 704,236 V 164 Q 704,156 696,156 H 460"
+              fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#synthetic-data-flow-arrow)"/>
+
+        <!-- 7. Fidelity & DCR gate? (YES) -> TSTR Dataset Export (coral happy path) -->
+        <line x1="360" y1="440" x2="360" y2="484" stroke="#bf4520" stroke-width="1.4" marker-end="url(#synthetic-data-flow-arrow-accent)"/>
+
+        <!-- Arrow label masks -->
+        <rect x="368" y="104" width="60" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="398" y="113" fill="#5a6580" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">FIT + Q95</text>
+
+        <rect x="368" y="196" width="44" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="390" y="205" fill="#5a6580" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">BATCH</text>
+
+        <rect x="524" y="244" width="32" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="540" y="253" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
+
+        <rect x="368" y="320" width="32" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="384" y="329" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
+
+        <rect x="572" y="372" width="32" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="588" y="381" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">NO</text>
+
+        <rect x="552" y="136" width="60" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="582" y="145" fill="#5a6580" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">FALLBACK</text>
+
+        <rect x="368" y="456" width="32" height="12" rx="2" fill="#f5f5f5"/>
+        <text x="384" y="465" fill="#bf4520" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.12em">YES</text>
+
+        <!-- Node 1: Start oval — Real Train & Holdout -->
+        <rect x="260" y="40" width="200" height="52" rx="24" fill="#f5f5f5"/>
+        <rect x="260" y="40" width="200" height="52" rx="24" fill="#2d3142" stroke="#2d3142" stroke-width="1" fill-opacity="0.03" stroke-opacity="0.30"/>
+        <text x="360" y="64" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Real Train &amp; Holdout</text>
+        <text x="360" y="80" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">50% fit · 25% privacy ref</text>
+
+        <!-- Node 2: Step rectangle — Candidate Orchestrator -->
+        <rect x="260" y="128" width="200" height="56" rx="6" fill="#f5f5f5"/>
+        <rect x="260" y="128" width="200" height="56" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="360" y="152" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Candidate Orchestrator</text>
+        <text x="360" y="168" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Copula · GMM · SMOTE</text>
+
+        <!-- Node 3: Decision diamond 1 — Schema & NaN valid? -->
+        <polygon points="360,220 472,264 360,308 248,264" fill="#f5f5f5"/>
+        <polygon points="360,220 472,264 360,308 248,264" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="360" y="260" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Schema &amp; NaN</text>
+        <text x="360" y="276" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">valid?</text>
+
+        <!-- Node 4: Decision diamond 2 — Fidelity & DCR gate? (focal coral #1) -->
+        <polygon points="360,344 480,392 360,440 240,392" fill="#f5f5f5"/>
+        <polygon points="360,344 480,392 360,440 240,392" fill="#bf4520" stroke="#bf4520" stroke-width="1" fill-opacity="0.08"/>
+        <text x="360" y="388" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Fidelity &amp; DCR</text>
+        <text x="360" y="404" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">&lt;=2x q95 · DCR &lt;=0.60</text>
+
+        <!-- Node 5: Step rectangle — Retry / Next Model -->
+        <rect x="608" y="236" width="192" height="56" rx="6" fill="#f5f5f5"/>
+        <rect x="608" y="236" width="192" height="56" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="704" y="260" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Retry / Next Model</text>
+        <text x="704" y="276" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">max 2 tries · fail-closed</text>
+
+        <!-- Node 6: End oval — TSTR Dataset Export (focal coral #2) -->
+        <rect x="260" y="484" width="200" height="56" rx="24" fill="#f5f5f5"/>
+        <rect x="260" y="484" width="200" height="56" rx="24" fill="#bf4520" stroke="#bf4520" stroke-width="1" fill-opacity="0.08"/>
+        <text x="360" y="508" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">TSTR Dataset Export</text>
+        <text x="360" y="524" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">96-99% AUC · MIA &lt;=0.55</text>
+
+        <!-- Bottom horizontal legend strip -->
+        <line x1="40" y1="560" x2="960" y2="560" stroke="#2d3142" stroke-width="0.8" stroke-opacity="0.10"/>
+        <text x="40" y="576" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND · SHAPE CARRIES TYPE</text>
+
+        <rect x="40" y="592" width="24" height="12" rx="6" fill="#2d3142" stroke="#2d3142" stroke-width="1" fill-opacity="0.03" stroke-opacity="0.30"/>
+        <text x="72" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Start / release</text>
+
+        <rect x="196" y="592" width="24" height="12" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="228" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Orchestrator step</text>
+
+        <polygon points="368,598 380,592 392,598 380,604" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="400" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Validation gate</text>
+
+        <rect x="524" y="592" width="14" height="10" rx="2" fill="#bf4520" stroke="#bf4520" stroke-width="1" fill-opacity="0.08"/>
+        <text x="544" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Focal privacy / export</text>
+
+        <line x1="704" y1="598" x2="732" y2="598" stroke="#bf4520" stroke-width="1.4" marker-end="url(#synthetic-data-flow-arrow-accent)"/>
+        <text x="740" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Accepted path</text>
+
+        <line x1="848" y1="598" x2="876" y2="598" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#synthetic-data-flow-arrow)"/>
+        <text x="884" y="602" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Retry loop</text>
+      </svg>
